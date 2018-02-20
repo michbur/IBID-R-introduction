@@ -17,9 +17,9 @@ The course is tailored for attendees with little to no experience with R. Any pr
 
 To participate in this course you are required to bring your own laptop, with a recent version of R ( http://cran.us.r-project.org/ ) and Rstudio ( https://www.rstudio.com/products/rstudio/download/ ). To install necessary packages and download data run in R the following script:
 
-{% highlight R %}
+```
 source("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/install_packages.R")
-{% endhighlight %}
+```
 
 ## Instructors:
 
