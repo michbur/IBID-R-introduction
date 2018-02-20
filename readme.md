@@ -4,6 +4,11 @@
 
 This introductory workshop on the **23. May 2018** provides training in data mining with the [R](http://cran.us.r-project.org/) environment. Examples presented in the workshop will focus on applications in natural and life sciences. R is a quickly developing tool for data analysis, embraced both by academia and industry (Google, Microsoft or Facebook). This workshop will introduce attendees to key concepts of data science and give a hands-on experience without requiring a previous knowledge of [R](http://cran.us.r-project.org/).
 
+
+The workshop is part of the [International Biotech Innovation Days](https://ibid-2018.b2match.io/), wich will take place from the 23 - 25 May 2018 in [Senftenberg, Germany](https://en.wikipedia.org/wiki/Senftenberg) at the [Brandenburg University of Technology (BTU) Cottbus – Senftenberg](https://www.b-tu.de/en/) (Campus Senftenberg).
+
+Since the IBID is an **open access conference**, participation is **free of charge<u></u>**.
+
 The workshop will cover fundamental topics including:
 
 - getting to know [R](http://cran.us.r-project.org/) packages and R-related tools for data science
@@ -13,7 +18,6 @@ The workshop will cover fundamental topics including:
 
 Exercises from this workshop employ data from life sciences, with a special focus on bioinformatics. Despite that fact, skills mastered during this event can be easily transferred to other applications. 
 
-The workshop is part of the [International Biotech Innovation Days](https://ibid-2018.b2match.io/), wich will take place from the 23 - 25 May 2018 in [Senftenberg, Germany](https://en.wikipedia.org/wiki/Senftenberg).
 
 
 ## Target audience:
@@ -27,6 +31,13 @@ To participate in this course you are required to bring your own laptop, with a 
 ```
 source("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/install_packages.R")
 ```
+
+## Registration:
+
+Although the event is free of charge, participants must register under [https://ibid-2018.b2match.io/signup](https://ibid-2018.b2match.io/signup), as available places are limited and information is required for certified participation. Participation in the free IBID conference is not necessary. 
+
+**The registration is open until 21 May 2018.**
+
 
 ## Instructors:
 
