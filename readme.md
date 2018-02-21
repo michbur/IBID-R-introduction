@@ -36,7 +36,13 @@ source("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/inst
 
 ## Registration:
 
-Although the event is **free of charge**, participants <u>must</u> register under [https://ibid-2018.b2match.io/signup](https://ibid-2018.b2match.io/signup), as available places are limited and information is required for certified participation. Participation in the free IBID conference is not necessary but recommended for 
+Although the event is **free of charge**, participants <u>must</u> register under 
+
+[https://ibid-2018.b2match.io/signup](https://ibid-2018.b2match.io/signup), 
+
+as available places are limited and information is required for certified participation. Participation in the free IBID conference is not necessary but recommended for those who are interrested in latest findings of medical siences and bioinformatics.
+
+[**Register here**](URL)
 
 [**The registration is open until 21 May 2018.**](https://ibid-2018.b2match.io/signup)
 
