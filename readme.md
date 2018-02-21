@@ -40,9 +40,10 @@ Although the event is **free of charge**, participants <u>must</u> register unde
 
 [**The registration is open until 21 May 2018.**](https://ibid-2018.b2match.io/signup)
 
+### Limited number of participants: 21 of 30 places left 
 
 ## Instructors:
 
-[Michał Burdukiewicz](https://www.researchgate.net/profile/Michal_Burdukiewicz) is a bioinformatician at University of Wrocław with 10 years of experience with R. As part of his PhD research he is working on bioinformatical tools that can be used for prediction of amyloidogenicity. He is passionate about open-source scientific software, Michał established Wrocław [R](http://cran.us.r-project.org/) User Group and organizes [WhyR 2018](http://whyr2018.pl/) conference. Michał is author of several research papers, [R](http://cran.us.r-project.org/) software packages and R-based web-server applications.
+[Michał Burdukiewicz](https://www.researchgate.net/profile/Michal_Burdukiewicz) is a bioinformatician at [University of Wrocław](https://international.uni.wroc.pl/en/s3.php) with 10 years of experience with R. As part of his PhD research he is working on bioinformatical tools that can be used for prediction of amyloidogenicity. He is passionate about open-source scientific software, Michał established Wrocław [R](http://cran.us.r-project.org/) User Group and organizes [WhyR 2018](http://whyr2018.pl/) conference. Michał is author of several research papers, [R](http://cran.us.r-project.org/) software packages and R-based web-server applications.
 
 [Stefan Rödiger](https://www.researchgate.net/profile/Stefan_Roediger) studied pharma-biotechnology and forensics and holds a doctoral degree in medical sciences. He is group leader at the [Brandenburg University of Technology Cottbus – Senftenberg](https://www.b-tu.de/en/), where he works in the field of medical bioinformatics and bioanalytics. He has more than 13 years of experience with [R](http://cran.us.r-project.org/). He is passionate about open-source scientific software and contributed to the [R](http://cran.us.r-project.org/) graphical user interface and integrated development environment [RKWard](https://rkward.kde.org/). Stefan is author of several research papers, [R](http://cran.us.r-project.org/) software packages and contributed to web-server applications.
