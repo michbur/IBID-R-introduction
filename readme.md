@@ -1,4 +1,4 @@
-![IBID](https://github.com/michbur/IBID-R-introdution/blob/master/logo_IBID_kolko.png)
+![IBID](https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/logo_IBID_kolko.png)
 
 # Data Science Workshop  -  Introduction to Data Science in [R](http://cran.us.r-project.org/) - 
 
