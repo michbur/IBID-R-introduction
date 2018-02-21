@@ -40,7 +40,8 @@ Although the event is **free of charge**, participants <u>must</u> register unde
 
 [**The registration is open until 21 May 2018.**](https://ibid-2018.b2match.io/signup)
 
-### Limited number of participants: 21 of 30 places left 
+
+> Limited number of participants: 21 of 30 places left 
 
 ## Instructors:
 
