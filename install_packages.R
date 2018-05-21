@@ -1,1 +1,1 @@
-install.packages(c("tidyverse", "mlr", "ranger"), repos = "https://cloud.r-project.org/")
+install.packages(c("tidyverse", "mlr", "ranger", "ggbeeswarm"), repos = "https://cloud.r-project.org/")
