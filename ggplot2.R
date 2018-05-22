@@ -102,7 +102,7 @@ ggplot(thr_dat, aes(x = thr)) +
   geom_bar()
 
 ggplot(thr_dat, aes(x = thr, fill = medium)) +
-  geom_bar()
+  geom_bar(position = "stack") 
 
 ggplot(thr_dat, aes(x = thr, fill = medium)) +
   geom_bar(position = "fill")
