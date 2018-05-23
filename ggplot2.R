@@ -5,7 +5,8 @@ final_dat <- melt(dat, variable.name = "medium") %>%
          value = ifelse(value < 0, 0, value)) %>% 
   group_by(active, strain, medium) %>% 
   summarise(value = median(value)) %>% 
-  inner_join(pathotype)
+  inner_join(pathotype) %>% 
+  ungroup()
 
 library(ggplot2)
 
@@ -83,8 +84,7 @@ ggplot(final_dat, aes(x = value, fill = active)) +
   geom_density(alpha = 0.2) +
   facet_grid(pathotype ~ medium)
 
-ungroup(final_dat) %>% 
-  mutate(active = factor(active, 
+mutate(final_dat, active = factor(active, 
                          levels = c("W2", "W3", "W1"),
                          labels = c("A1", "W3", "W1"))) %>% 
   ggplot(aes(x = value, fill = active)) +
@@ -137,7 +137,7 @@ ggplot(mean_dat, aes(x = pathotype, y = active, fill = mean_value)) +
   facet_wrap(~ medium)
 
 ggplot(mean_dat, aes(x = pathotype, y = mean_value, fill = medium)) +
-  geom_bar(position = "dodge", stat = "identity") + +
+  geom_bar(position = "dodge", stat = "identity") + 
   facet_wrap(~ active, ncol = 1)
 
 ggplot(mean_dat, aes(x = pathotype, y = mean_value, fill = medium)) +
@@ -170,6 +170,8 @@ p <- ggplot(mean_dat, aes(x = pathotype, y = mean_value, fill = medium)) +
   geom_errorbar(aes(ymax = mean_value + sd_value, ymin = mean_value, color = medium), position = "dodge") +
   facet_wrap(~ active, ncol = 1)
 
+# Styling
+
 p + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 p + theme(axis.text.x = element_text(angle = 90, hjust = 1),
@@ -183,7 +185,7 @@ ggplot(thr_dat, aes(x = medium, fill = thr)) +
   my_theme
 
 # 1. Create your own theme. See ?theme
-# 2. See possible themes using theme_bw
+# 2. Try existing themes (for example theme_bw)
 
 ggplot(thr_dat, aes(x = medium, fill = thr)) +
   geom_bar(position = "fill")
@@ -230,13 +232,15 @@ ggplot(mean_dat, aes(x = pathotype, y = active, color = mean_value, size = sd_va
   facet_wrap(~ medium) +
   scale_size_continuous(range = c(5, 10))
 
+# Task: Create a heatmap with gradient scale, 
+# midpoint should be a median of mean_value
+
 ggplot(mean_dat, aes(x = pathotype, y = active, fill = mean_value, color = sd_value)) +
   geom_tile(color = "black") +
   facet_wrap(~ medium) +
   scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
                        midpoint = (max(mean_dat[["mean_value"]]) - min(mean_dat[["mean_value"]]))/2)
 
-# Create a heatmap with gradient scale, where midpoint is the median of mean_value
 
 ggplot(final_dat, aes(x = value, fill = active)) +
   geom_density(alpha = 0.2) +
@@ -247,6 +251,7 @@ ggplot(final_dat, aes(x = value, fill = active)) +
   facet_wrap( ~ medium) +
   coord_cartesian(xlim = c(0, 0.1))
 
+# interactive plots
 
 library(plotly)
 ggplotly(ggplot(thr_dat, aes(x = medium, fill = thr)) +
