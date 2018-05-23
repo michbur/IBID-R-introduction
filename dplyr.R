@@ -167,11 +167,85 @@ ungroup(median_dat) %>%
 group_by(median_dat, active, medium) %>% 
   summarise(max_value = max(value))
 
-group_by(median_dat, active, medium) %>% 
-  filter(value == max(value))
+# Task: Instead of maximum, compute minimum (min function) 
+# for each level of active and medium
 
 group_by(median_dat, active, medium) %>% 
+  summarise(min_value = min(value))
+
+group_by(median_dat, active, medium) %>% 
+  summarise(max_value = max(value),
+            min_value = min(value))
+
+# Task: Instead of maximum, compute median (median function) 
+# for each level of active and medium
+
+group_by(median_dat, active, medium) %>% 
+  summarise(median_value = median(value))
+
+# Task: Instead of maximum, compute median (median function) 
+# for each level of active
+
+group_by(median_dat, active) %>% 
+  summarise(median_value = median(value))
+
+group_by(median_dat, active) %>% 
+  filter(value == max(value))
+
+# Task: Find all strains (grouped by active) that have minimum value
+
+group_by(median_dat, active) %>% 
+  filter(value == min(value))
+
+# Task: Find all strains (grouped by medium) that have maximum value
+
+group_by(median_dat, medium) %>% 
+  filter(value == max(value))
+
+group_by(median_dat, active) %>% 
   mutate(value = value/max(value))
+
+x <- data.frame(value = 1L:10,
+                variable = c(rep("A", 5), rep("B", 5)))
+
+mutate(x, norm = value/max(value))
+
+group_by(x, variable) %>% 
+  mutate(norm = value/max(value))
+
+group_by(x, variable) %>% 
+  mutate(norm = (value - min(value))/(max(value) - min(value)))
+
+mutate(x, norm = (value - min(value))/(max(value) - min(value))) %>% 
+  group_by(variable) %>% 
+  mutate(norm_grouped = (value - min(value))/(max(value) - min(value)))
+
+# Task: Find all strains (grouped by active) that have value higher 
+# than median value (median)
+
+group_by(median_dat, active) %>% 
+  filter(value > median(value))
+
+# Task: Find all strains (grouped by active) that have value higher 
+# than 0.3
+
+group_by(median_dat, active) %>% 
+  filter(value > 0.3)
+
+group_by(median_dat, active) %>% 
+  filter(value > 0.3) %>% 
+  summarise(count = length(value))
+
+# Task: Find all strains (grouped by medium) that have value lower 
+# than 0.05, select columns medium and strain, 
+# and count number of strains for each medium
+
+group_by(median_dat, medium) %>% 
+  filter(value < 0.05) %>% 
+  select(medium, strain) %>% 
+  summarise(count = length(strain)) %>% 
+  arrange(desc(count))
+
 
 # Merging
 
@@ -179,8 +253,17 @@ dat_np <- select(dat, -pathotype)
 pathotype <- read.csv("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/data/data2.csv") %>% 
   mutate(strain = as.character(strain))
 
-final_dat <- inner_join(median_dat, pathotype, by = c("strain" = "strain")) %>% 
-  ungroup()
+final_dat <- inner_join(dat_np, pathotype, 
+                        by = c("strain" = "strain")) 
+
+# Final task: only for mediums LB and BHI count strains with value 
+# larger than 0.1 for each active
+
+filter(median_dat, medium %in% c("LB", "BHI"),
+       value > 0.1) %>% 
+  group_by(active) %>% 
+  summarise(count = length(strain))
+
 
 # 1. Create a data.frame mean_dat of mean values only for replicates 1-2 for each 
 # strain and active substance.
