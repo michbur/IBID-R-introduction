@@ -28,10 +28,21 @@ ggplot(final_dat, aes(x = pathotype, y = value)) +
   geom_point(position = "jitter") +
   facet_grid(medium ~ active)
 
+ggplot(final_dat, aes(x = pathotype, y = value)) +
+  geom_point(position = "jitter") +
+  facet_grid(medium ~ active, labeller = label_both)
+
 set.seed(1410)
 ggplot(final_dat, aes(x = pathotype, y = value)) +
   geom_point(position = "jitter") +
   facet_wrap(~ active + medium)
+
+# Task: Create a plot of relationship between medium and value and 
+# split it using active and pathotype
+
+ggplot(final_dat, aes(x = medium, y = value)) +
+  geom_point(position = "jitter") +
+  facet_grid(pathotype ~ active, labeller = label_both)
 
 # Boxplots
 
@@ -40,19 +51,64 @@ ggplot(final_dat, aes(x = pathotype, y = value)) +
   geom_boxplot() +
   facet_grid(medium ~ active)
 
-# 1. Add points to boxplots. What happened to outliers?
-# 2. Create a boxplot only for active == "W1" and pathotype == "UPEC"
+# Task: Create a boxplot only for active == "W1" and pathotype == "UPEC"
+
+filter(final_dat, active == "W1", pathotype == "UPEC") %>% 
+  ggplot(aes(x = pathotype, y = value)) +
+  geom_boxplot() +
+  facet_grid(medium ~ active)
+
+# Task: Create a boxplot only for active W1 and W3, on facets 
+# active and pathotype, map medium to the X-axis
+
+filter(final_dat, active %in% c("W1", "W3")) %>% 
+  ggplot(aes(x = medium, y = value)) +
+  geom_boxplot() +
+  facet_grid(pathotype ~ active)
+
+# Task: Create a dotplot only for active W1 and W3, on facets 
+# active and pathotype, map medium to the X-axis
+
+filter(final_dat, active %in% c("W1", "W3")) %>% 
+  ggplot(aes(x = medium, y = value)) +
+  geom_point(position = "jitter") +
+  facet_grid(pathotype ~ active)
 
 # Beeswarm charts - no more jitter
-
+# install.packages("ggbeeswarm")
 library(ggbeeswarm)
+
+ggplot(final_dat, aes(x = medium, y = value)) +
+  geom_quasirandom() +
+  facet_grid(pathotype ~ active, labeller = label_both)
+
 ggplot(final_dat, aes(x = pathotype, y = value, color = active)) +
   geom_quasirandom() +
+  facet_wrap(~ medium)
+
+ggplot(final_dat, aes(x = pathotype, y = value, color = active)) +
+  geom_point(position = "jitter") +
   facet_wrap(~ medium)
 
 ggplot(filter(final_dat, active != "W3"), aes(x = pathotype, y = value, color = active)) +
   geom_quasirandom() +
   facet_wrap(~ medium)
+
+# Task: Create a dotplot and beeswarm plot for data where we consider
+# only measurements with value higher than 0.1. X axis - medium,
+# facets: active
+
+filter(final_dat, value > 0.1) %>% 
+  ggplot(aes(x = medium, y = value)) +
+  geom_point() +
+  facet_wrap(~ active) +
+  ggtitle("Dot plot")
+
+filter(final_dat, value > 0.1) %>% 
+  ggplot(aes(x = medium, y = value)) +
+  geom_quasirandom(groupOnX = TRUE) +
+  facet_wrap(~ active) +
+  ggtitle("Beeswarm plot")
 
 # Customizing facets
 
@@ -64,6 +120,16 @@ ggplot(final_dat, aes(x = pathotype, y = value, color = active)) +
   geom_point(position = "jitter") +
   facet_wrap(~ medium, scales = "free_y")
 
+filter(final_dat, pathotype != "EAEC" | medium != "LB") %>% 
+  ggplot(aes(x = pathotype, y = value, color = active)) +
+  geom_point(position = "jitter") +
+  facet_wrap(~ medium, scales = "free_x")
+
+filter(final_dat, pathotype != "EAEC" | medium != "LB") %>% 
+  ggplot(aes(x = pathotype, y = value, color = active)) +
+  geom_point(position = "jitter") +
+  facet_wrap(~ medium, scales = "free")
+
 # Density plots
 
 ggplot(final_dat, aes(x = value)) +
@@ -72,6 +138,10 @@ ggplot(final_dat, aes(x = value)) +
 ggplot(final_dat, aes(x = value)) +
   geom_density() +
   facet_wrap(~ medium)
+
+ggplot(final_dat, aes(x = value)) +
+  geom_density() +
+  facet_wrap(~ active)
 
 ggplot(final_dat, aes(x = value, fill = active)) +
   geom_density() +
@@ -86,14 +156,22 @@ ggplot(final_dat, aes(x = value, fill = active)) +
   facet_grid(pathotype ~ medium)
 
 mutate(final_dat, active = factor(active, 
-                         levels = c("W2", "W3", "W1"),
-                         labels = c("A1", "W3", "W1"))) %>% 
+                                  levels = c("W2", "W3", "W1"),
+                                  labels = c("A1", "Helena Fisher", "W1"))) %>% 
   ggplot(aes(x = value, fill = active)) +
   geom_density(alpha = 0.2) +
   facet_wrap(~ medium)
 
 
 # 1. Create a density plot for each pathotype and medium.
+
+ggplot(final_dat, aes(x = value, fill = medium)) +
+  geom_density(alpha = 0.2) +
+  facet_wrap(~ pathotype)
+
+ggplot(final_dat, aes(x = value)) +
+  geom_density(alpha = 0.2) +
+  facet_grid(medium ~ pathotype)
 
 # Bar plots
 
@@ -103,16 +181,28 @@ ggplot(thr_dat, aes(x = thr)) +
   geom_bar()
 
 ggplot(thr_dat, aes(x = thr, fill = medium)) +
+  geom_bar()
+
+ggplot(thr_dat, aes(x = thr, fill = medium)) +
   geom_bar(position = "stack") 
 
 ggplot(thr_dat, aes(x = thr, fill = medium)) +
   geom_bar(position = "fill")
 
+ggplot(thr_dat, aes(x = thr, fill = medium)) +
+  geom_bar(position = "stack") +
+  coord_polar()
+
 ggplot(thr_dat, aes(x = medium, fill = thr)) +
   geom_bar(position = "fill") 
 
-# 1. Using facets and bar charts show threshold data separately
-# for each active substance.
+# Task: Using facets and bar charts show threshold data separately
+# for each active substance and medium.
+
+ggplot(thr_dat, aes(x = active, fill = thr)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~ medium)
+
 # 2. Show on a barchart number of strains from each pathotype.
 
 thr_dat2 <- group_by(thr_dat, medium) %>% 
@@ -125,9 +215,16 @@ rbind(mutate(thr_dat2, thr_et = TRUE),
   geom_bar(stat = "identity") +
   geom_text(vjust = 2)
 
-ggplot(thr_dat, aes(x = medium, fill = thr)) +
-  geom_bar(position = "fill") + 
-  geom_text
+
+thr_dat <- mutate(final_dat, thr = value > 0.05)
+thr_dat2 <- group_by(thr_dat, medium) %>% 
+  summarise(thr = mean(thr))
+rbind(mutate(thr_dat2, thr_et = TRUE),
+      mutate(thr_dat2, thr_et = FALSE,
+             thr = 1 - thr)) %>% 
+  ggplot(aes(x = medium, y = thr, fill = thr_et, label = formatC(thr, 2))) +
+  geom_bar(stat = "identity") +
+  geom_text(vjust = 2)
 
 mean_dat <- group_by(final_dat, active, medium, pathotype) %>% 
   summarise(mean_value = mean(value),
@@ -150,8 +247,23 @@ ggplot(mean_dat, aes(x = pathotype, y = mean_value, fill = medium)) +
   geom_errorbar(aes(ymax = mean_value + sd_value, ymin = mean_value, color = medium), position = "dodge") +
   facet_wrap(~ active, ncol = 1)
 
-# 1. Using a bar chart compare median values for each medium and pathotype. 
+# Task: Using a bar chart compare median values for each medium, 
+# pathotype and active. 
 # Use median absolute deviation (mad()) as a dispersion measure.
+# mean() - median(); sd() - mad()
+
+median_dat <- group_by(final_dat, active, medium, pathotype) %>% 
+  summarise(median_value = median(value),
+            mad_value = mad(value)) %>% 
+  mutate(upper = median_value + mad_value)
+
+ggplot(median_dat, aes(x = pathotype, y = median_value, fill = medium)) +
+  geom_col(position = "dodge") +
+  geom_errorbar(aes(ymax = upper, 
+                    ymin = median_value, color = medium), 
+                position = "dodge") +
+  facet_wrap(~ active, ncol = 1)
+
 # 2. Using a heat map compare median values for each medium and pathotype. 
 
 ggplot(mean_dat, aes(x = pathotype, y = mean_value, fill = medium)) +
@@ -255,10 +367,17 @@ ggplot(final_dat, aes(x = value, fill = active)) +
 # interactive plots
 
 library(plotly)
+ggplot(thr_dat, aes(x = medium, fill = thr)) +
+  geom_bar(position = "fill")
+
 ggplotly(ggplot(thr_dat, aes(x = medium, fill = thr)) +
            geom_bar(position = "fill"))
 
 ggplotly(ggplot(final_dat, aes(x = pathotype, y = value, color = active)) +
-           geom_boxplot() +
+           geom_point(position = "jitter") +
            facet_wrap(~ medium))
 
+
+ggplotly(ggplot(final_dat, aes(x = pathotype, y = value, color = active)) +
+           geom_quasirandom() +
+           facet_wrap(~ medium))
