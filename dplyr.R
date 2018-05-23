@@ -1,11 +1,11 @@
-# https://github.com/michbur/PADR/blob/master/dplyr.R
+# https://github.com/michbur/IBID-R-introdution/blob/master/dplyr.R
 
 library(dplyr)
 library(reshape2)
 
 # Data and data types
 
-dat <- read.csv("https://raw.githubusercontent.com/michbur/PADR/master/data/data1.csv")
+dat <- read.csv("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/data/data1.csv")
 
 class(dat)
 
@@ -26,7 +26,7 @@ dat[["strain"]] <- as.character(dat[["strain"]])
 
 mutate(dat, strain = as.character(strain))
 
-dat <- read.csv("https://raw.githubusercontent.com/michbur/PADR/master/data/data1.csv") %>% 
+dat <- read.csv("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/data/data1.csv") %>% 
   mutate(strain = as.character(strain))
 
 dat[["strain"]]
@@ -112,7 +112,7 @@ group_by(median_dat, active, medium) %>%
 # Merging
 
 dat_np <- select(dat, -pathotype)
-pathotype <- read.csv("https://raw.githubusercontent.com/michbur/PADR/master/data/data2.csv") %>% 
+pathotype <- read.csv("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/data/data2.csv") %>% 
   mutate(strain = as.character(strain))
 
 final_dat <- inner_join(median_dat, pathotype, by = c("strain" = "strain")) %>% 
