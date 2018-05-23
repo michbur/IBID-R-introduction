@@ -19,9 +19,10 @@ In fact, this presentation is made in **R**.
 
 ## Agenda
 
-- 9:00 Part 1 (dplyr).
+- 9:00 Part 1 (data processing).
 - 12:00 Lunch.
-- 13:00 Part II (ggplot2).
+- 13:00 Part II (IDEs in R).
+- 13:30 Part III: Data visualization.
 
 ## What we will learn?
 

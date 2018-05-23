@@ -1,4 +1,4 @@
-# https://github.com/michbur/PADR/blob/master/ggplot2.R
+# https://github.com/michbur/IBID-R-introdution/blob/master/ggplot2.R
 
 final_dat <- melt(dat, variable.name = "medium") %>% 
   mutate(medium = sapply(strsplit(as.character(medium), "_"), first),
