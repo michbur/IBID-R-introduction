@@ -1,0 +1,53 @@
+---
+title: "IBID: Introduction to R"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## What's R?
+
+**R** is a powerful environment for statistical computations and presentation of their results.
+
+## What's R?
+
+**R** is a powerful environment for statistical computations and presentation of their results.
+
+In fact, this presentation is made in **R**.
+
+## Agenda
+
+- 9:00 Part 1 (data processing).
+- 12:00 Lunch.
+- 13:00 Part II (IDEs in R).
+- 13:30 Part III: Data visualization.
+
+## What we will learn?
+
+How to process (alter, aggregate, filter) and visualize typical data in **R** using *tidyverse* tools.
+
+## What we won't learn?
+
+**R**.
+
+## What we won't learn?
+
+**R**.
+
+*tidyverse* offers solutions only to the most common problems. The majority of these solutions is very good and surpasses base **R** tools.
+
+Nevertheless, **R** is a much broader environment that could be used in a variety of applications.
+
+## Who we are?
+
+<img src='img/fundacja.png' id="logo" height="75%" width="75%"/>
+
+## Why R? 2018 conference
+
+<img src='https://whyr2018.github.io/WhyR2018/img/bg/europe2_mapa_kwiecien_light.jpg' id="logo" height="75%" width="75%"/>
+
+## Let's start
+
+https://tinyurl.com/IBID-R-intro
