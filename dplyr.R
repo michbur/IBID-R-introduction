@@ -46,7 +46,7 @@ dat %>%
 
 select(dat, M63_1, M63_2, M63_3)
 select(dat, M63_1) %>% head
-select_(dat, "M63_1") %>% head
+select(dat, "M63_1") %>% head
 
 paste0("M63_", 1L:3)
 
@@ -283,5 +283,4 @@ melt(dat, variable.name = "medium") %>%
 group_by(final_dat, pathotype) %>% 
   summarise(n_strains = length(unique(strain)))
 
-group_by(final_dat, medium) %>% 
-  filter(value == min(value))
+
