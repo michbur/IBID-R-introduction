@@ -10,7 +10,7 @@ final_dat <- mutate(dat, strain = as.character(strain)) %>%
   melt(variable.name = "medium") %>% 
   mutate(medium = sapply(strsplit(as.character(medium), "_"), first),
          value = ifelse(value < 0, 0, value)) %>% 
-  group_by(active, strain, medium) %>% 
+  group_by(active, strain, medium, pathotype) %>% 
   summarise(value = median(value)) 
 
 library(ggplot2)
@@ -47,6 +47,9 @@ ggplot(final_dat, aes(x = pathotype, y = value)) +
 ggplot(final_dat, aes(x = medium, y = value)) +
   geom_point(position = "jitter") +
   facet_grid(pathotype ~ active, labeller = label_both)
+
+# Task: Create a dotplot plot of relationship between medium and value for
+# active W3 and pathotype
 
 # Boxplots
 
