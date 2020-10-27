@@ -1,4 +1,4 @@
-# https://github.com/michbur/IBID-R-introdution/blob/master/dplyr.R
+# https://github.com/michbur/IBID-R-introduction/blob/master/dplyr.R
 
 library(dplyr)
 library(reshape2)
@@ -40,7 +40,9 @@ dat[["strain"]]
 # pipe shortcut: ctrl+shift+m 
 
 dat %>% 
-  mutate(mean_LB = mean(c(LB_1, LB_2, LB_3)))
+  group_by(strain) %>% 
+  mutate(mean_LB = mean(c(LB_1, LB_2, LB_3))) %>% 
+  select(mean_LB)
 
 # Subsetting I: indices
 
