@@ -30,5 +30,5 @@ source("https://raw.githubusercontent.com/michbur/IBID-R-introduction/master/ins
 ```
 ## Instructors:
 
-[Michał Burdukiewicz](https://www.researchgate.net/profile/Michal_Burdukiewicz) is a bioinformatician at Institute of Biochemistry and Biophysics Polish Academy of Sciences with 14 years of experience with R. He is working on machine learning models for prediction of protein properties. He is passionate about open-source scientific software, Michał established Wrocław [R](http://cran.us.r-project.org/) User Group and organizes Why R?  conferences. Michał is author of several research papers, [R](http://cran.us.r-project.org/) software packages and R-based web-server applications.
+[Michał Burdukiewicz](https://www.researchgate.net/profile/Michal_Burdukiewicz) is a bioinformatician at Institute of Biochemistry and Biophysics Polish Academy of Sciences with 13 years of experience with R. He is working on machine learning models for prediction of protein properties. He is passionate about open-source scientific software, Michał established Wrocław [R](http://cran.us.r-project.org/) User Group and organizes Why R?  conferences. Michał is author of several research papers, [R](http://cran.us.r-project.org/) software packages and R-based web-server applications.
 
