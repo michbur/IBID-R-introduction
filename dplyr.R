@@ -85,6 +85,7 @@ melt(dat, variable.name = "medium")[["medium"]]
 melt(dat, variable.name = "medium")[["medium"]] %>% 
   as.character
 
+
 melt(dat, variable.name = "medium")[["medium"]] %>% 
   as.character %>% 
   strsplit(split = "_")
@@ -103,6 +104,11 @@ ifelse(x < 0, 0, x)
 # Task: Change everything in vector x larger than 4 to 4
 ifelse(x > 4, 4, x)
 
+# Task: Change everything in vector x larger than 0 and smaller than 
+# 4 to 0; 'and' operator in R is &
+
+ifelse(x > 0 & x < 4, 0, x)
+
 melt(dat, variable.name = "medium") %>% 
   mutate(medium = sapply(strsplit(as.character(medium), "_"), first),
          value = ifelse(value < 0, 0, value))
@@ -110,7 +116,7 @@ melt(dat, variable.name = "medium") %>%
 melt(dat, variable.name = "medium") %>% 
   mutate(medium = sapply(strsplit(as.character(medium), "_"), first),
          value = ifelse(value < 0, 0, value)) %>% 
-  group_by(medium) %>% 
+  group_by(medium, strain) %>% 
   mutate(value = (max(value) - min(value))/max(value))
 
 median_dat <- melt(dat, variable.name = "medium") %>% 
@@ -176,6 +182,9 @@ ungroup(median_dat) %>%
 group_by(median_dat, active, medium) %>% 
   summarise(max_value = max(value))
 
+group_by(median_dat, active) %>% 
+  summarise(max_value = max(value))
+
 # Task: Instead of maximum, compute minimum (min function) 
 # for each level of active and medium
 
@@ -213,6 +222,13 @@ group_by(median_dat, medium) %>%
 
 group_by(median_dat, active) %>% 
   mutate(value = value/max(value))
+
+# Task: Find all strains that have a maximum value for each activity
+# but only for the LB medium
+
+filter(median_dat, medium == "LB") %>% 
+  group_by(active) %>% 
+  filter(value == max(value))
 
 x <- data.frame(value = 1L:10,
                 variable = c(rep("A", 5), rep("B", 5)))

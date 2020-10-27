@@ -1,6 +1,11 @@
 # https://tinyurl.com/IBID-R-intro2
 # https://github.com/michbur/IBID-R-introdution/blob/master/ggplot2.R
 
+library(dplyr)
+library(reshape2)
+
+dat <- read.csv("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/data/data1.csv")
+
 final_dat <- melt(dat, variable.name = "medium") %>% 
   mutate(medium = sapply(strsplit(as.character(medium), "_"), first),
          value = ifelse(value < 0, 0, value)) %>% 
