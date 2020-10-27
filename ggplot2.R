@@ -51,9 +51,14 @@ ggplot(final_dat, aes(x = medium, y = value)) +
 # Task: Create a dotplot plot of relationship between medium and value for
 # active W3 and pathotype
 
+set.seed(1410)
+filter(final_dat, active == "W3") %>% 
+  ggplot(aes(x = pathotype, y = value)) +
+  geom_point(position = "jitter")
+
+
 # Boxplots
 
-set.seed(1410)
 ggplot(final_dat, aes(x = pathotype, y = value)) +
   geom_boxplot() +
   facet_grid(medium ~ active)
@@ -87,6 +92,14 @@ library(ggbeeswarm)
 
 ggplot(final_dat, aes(x = medium, y = value)) +
   geom_quasirandom() +
+  facet_grid(pathotype ~ active, labeller = label_both)
+
+ggplot(final_dat, aes(x = medium, y = value)) +
+  geom_quasirandom(method = "smiley") +
+  facet_grid(pathotype ~ active, labeller = label_both)
+
+ggplot(final_dat, aes(x = medium, y = value)) +
+  geom_quasirandom(method = "frowney") +
   facet_grid(pathotype ~ active, labeller = label_both)
 
 ggplot(final_dat, aes(x = pathotype, y = value, color = active)) +
@@ -131,6 +144,11 @@ filter(final_dat, pathotype != "EAEC" | medium != "LB") %>%
   ggplot(aes(x = pathotype, y = value, color = active)) +
   geom_point(position = "jitter") +
   facet_wrap(~ medium, scales = "free_x")
+
+filter(final_dat, pathotype != "EAEC" | medium != "LB") %>% 
+  ggplot(aes(x = pathotype, y = value, color = active)) +
+  geom_point(position = "jitter") +
+  facet_wrap(~ medium)
 
 filter(final_dat, pathotype != "EAEC" | medium != "LB") %>% 
   ggplot(aes(x = pathotype, y = value, color = active)) +
@@ -200,6 +218,10 @@ ggplot(thr_dat, aes(x = thr, fill = medium)) +
   geom_bar(position = "stack") +
   coord_polar()
 
+ggplot(thr_dat, aes(x = thr, fill = medium)) +
+  geom_bar(position = "fill") +
+  coord_polar()
+
 ggplot(thr_dat, aes(x = medium, fill = thr)) +
   geom_bar(position = "fill") 
 
@@ -221,6 +243,13 @@ rbind(mutate(thr_dat2, thr_et = TRUE),
   ggplot(aes(x = medium, y = thr, fill = thr_et, label = formatC(thr, 2))) +
   geom_bar(stat = "identity") +
   geom_text(vjust = 2)
+
+rbind(mutate(thr_dat2, thr_et = TRUE),
+      mutate(thr_dat2, thr_et = FALSE,
+             thr = 1 - thr)) %>% 
+  ggplot(aes(x = medium, y = thr, fill = thr_et, label = formatC(thr, 2))) +
+  geom_bar(stat = "identity") +
+  geom_label(vjust = 2)
 
 
 thr_dat <- mutate(final_dat, thr = value > 0.05)
@@ -388,3 +417,19 @@ ggplotly(ggplot(final_dat, aes(x = pathotype, y = value, color = active)) +
 ggplotly(ggplot(final_dat, aes(x = pathotype, y = value, color = active)) +
            geom_quasirandom() +
            facet_wrap(~ medium))
+
+
+# Task: create a heatmap of mean value (mean_dat) for every level of
+# pathotype, medium and active. 
+
+p1 <- ggplot(mean_dat, aes(x = pathotype, y = medium, fill = mean_value)) +
+  geom_tile(color = "black") +
+  facet_wrap(~ active)
+
+p2 <- ggplot(mean_dat, aes(x = active, y = medium, fill = mean_value)) +
+  geom_tile(color = "black") +
+  facet_wrap(~ pathotype)
+
+library(patchwork)
+
+p1 + p2
