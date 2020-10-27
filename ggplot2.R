@@ -6,13 +6,12 @@ library(reshape2)
 
 dat <- read.csv("https://raw.githubusercontent.com/michbur/IBID-R-introdution/master/data/data1.csv")
 
-final_dat <- melt(dat, variable.name = "medium") %>% 
+final_dat <- mutate(dat, strain = as.character(strain)) %>% 
+  melt(variable.name = "medium") %>% 
   mutate(medium = sapply(strsplit(as.character(medium), "_"), first),
          value = ifelse(value < 0, 0, value)) %>% 
   group_by(active, strain, medium) %>% 
-  summarise(value = median(value)) %>% 
-  inner_join(pathotype) %>% 
-  ungroup()
+  summarise(value = median(value)) 
 
 library(ggplot2)
 
