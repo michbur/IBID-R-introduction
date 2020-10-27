@@ -52,7 +52,9 @@ select(dat, "M63_1") %>% head
 
 paste0("M63_", 1L:3)
 
-select_(dat, .dots = paste0("M63_", 1L:3)) %>% head
+# select_(dat, .dots = paste0("M63_", 1L:3)) %>% head
+select(dat, paste0("M63_", 1L:3)) %>% head
+
 
 # select selects columns
 
@@ -66,6 +68,11 @@ slice(dat, 25L:27)
 slice(dat, 50L:57) %>% 
   select(active, pathotype, LB_1)
   
+# Task: Extract first five rows but only for columns pathotype, 
+# LB_1, LB_2 and LB_3
+
+slice(dat, 1:5) %>%
+  select(pathotype, paste0("LB_", 1:3))
 
 # Melting data: long and wide formats
 
